@@ -47,7 +47,7 @@ public class ChooseAreaFragment extends Fragment {
     private List<String> dataList = new ArrayList<>();
 
     private List<Province> provinceList;
-    private List<City> cityList;
+    private List<City> cityList=new ArrayList<>();
     private List<County> countyList;
 
     private Province selectedProvince;
@@ -120,8 +120,11 @@ public class ChooseAreaFragment extends Fragment {
 
         if (cursor.moveToFirst()) {
             dataList.clear();
+            cityList.clear();
             do {
-                dataList.add(cursor.getString(cursor.getColumnIndex("cityName")));
+                cityList.add(new City(cursor.getInt(cursor.getColumnIndex("id")),cursor.getString(cursor.getColumnIndex("cityname"))
+                ,cursor.getInt(cursor.getColumnIndex("citycode")),cursor.getInt(cursor.getColumnIndex("provinceid"))));
+                dataList.add(cursor.getString(cursor.getColumnIndex("cityname")));
             } while (cursor.moveToNext());
             adapter.notifyDataSetChanged();
             listView.setSelection(0);
@@ -138,7 +141,7 @@ public class ChooseAreaFragment extends Fragment {
     {
         txtTitle.setText(selectedCity.getCityName());
         btnBack.setVisibility(View.VISIBLE);
-        countyList=DataSupport.where("cityid=?",String.valueOf(selectedCity.getCityCode())).find(County.class);
+        countyList=DataSupport.where("cityid=?",String.valueOf(selectedCity.getId())).find(County.class);
         if(countyList.size()>0)
         {
             dataList.clear();
