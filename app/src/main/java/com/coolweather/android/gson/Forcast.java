@@ -13,7 +13,7 @@ public class Forcast {
         public String info;
     }
 
-    @SerializedName("txt")
+    @SerializedName("tmp")
     public Temperature temperature;
 
     public class Temperature{
