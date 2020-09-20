@@ -11,29 +11,49 @@
         android:id="@+id/imgBingPic"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"/>
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/swipe_refresh">
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/layoutWeather"
-        android:scrollbars="none"
-        android:overScrollMode="never">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:fitsSystemWindows="true">
-            <include layout="@layout/layout_title"/>
-            <include layout="@layout/layout_now"/>
-            <include layout="@layout/layout_forecast"/>
-            <include layout="@layout/layout_api"/>
-            <include layout="@layout/layout_suggestion"/>
-        </LinearLayout>
-    </ScrollView>
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        android:scaleType="centerCrop" />
 
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ScrollView
+                android:id="@+id/layoutWeather"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:overScrollMode="never"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fitsSystemWindows="true"
+                    android:orientation="vertical">
+
+                    <include layout="@layout/layout_title" />
+
+                    <include layout="@layout/layout_now" />
+
+                    <include layout="@layout/layout_forecast" />
+
+                    <include layout="@layout/layout_api" />
+
+                    <include layout="@layout/layout_suggestion" />
+                </LinearLayout>
+            </ScrollView>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <fragment
+            android:id="@+id/fragmentChooseArea"
+            android:name="com.coolweather.android.ChooseAreaFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="start" />
+    </androidx.drawerlayout.widget.DrawerLayout>
 </FrameLayout>
